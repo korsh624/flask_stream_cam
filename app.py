@@ -9,7 +9,7 @@ def gen_frames():
         success, frame = camera.read()  # read the camera frame
         frame=cv2.resize(frame, (800, 600))
         font = cv2.FONT_HERSHEY_COMPLEX
-        cv2.putText(frame, 'наш произвольный текст', (10, 50), font, 1, color=(0, 255, 0), thickness=2)
+        cv2.putText(frame, 'наш произвольный текст', (10, 50), font, 1, color=(0, 0, 255), thickness=2)
         if not success:
             break
         else:
