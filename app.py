@@ -3,10 +3,6 @@ from flask import Flask, render_template, Response
 import cv2
 #Initialize the Flask app
 app = Flask(__name__)
-import serial
-import time
-arduino = serial.Serial(port='COM7', baudrate=9600, timeout=.1)
-# print("connected arduino")
 camera = cv2.VideoCapture(0)
 print("connected camera")
 def gen_frames():  
