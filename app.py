@@ -5,9 +5,9 @@ import cv2
 app = Flask(__name__)
 import serial
 import time
-data='open'
-read="korsh624"
-# arduino = serial.Serial('COM7',9600)
+read='korsh624'
+# arduino = serial.Serial(port='COM7', baudrate=9600, timeout=.1)
+# print("connected arduino")
 camera = cv2.VideoCapture(0)
 print("connected camera")
 def gen_frames():  
@@ -15,7 +15,7 @@ def gen_frames():
         # data = arduino.readline()
         #prinnt("# read the port data")
         success, frame = camera.read()  # read the camera frame
-        frame=cv2.resize(frame, (800, 600))
+        frame=cv2.resize(frame, (1280, 720))
         font = cv2.FONT_HERSHEY_COMPLEX
         # cv2.putText(frame, "data", (10, 50), font, 1, color=(0, 255, 255), thickness=2)
         # cv2.putText(frame, data, (10, 50), font, 1, color=(0, 255, 255), thickness=2)
@@ -35,4 +35,4 @@ def index():
 def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=False)
